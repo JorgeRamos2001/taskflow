@@ -68,12 +68,13 @@ CREATE TABLE sub_tasks
     task_id   UUID REFERENCES tasks (id) ON DELETE CASCADE
 );
 
-CREATE TABLE comments (
-                          id        UUID PRIMARY KEY      DEFAULT uuid_generate_v4(),
-                          content   TEXT NOT NULL,
-                          created_at TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                          user_id    UUID REFERENCES users (id),
-                          task_id    UUID REFERENCES tasks (id) ON DELETE CASCADE
+CREATE TABLE comments
+(
+    id         UUID PRIMARY KEY   DEFAULT uuid_generate_v4(),
+    content    TEXT      NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    user_id    UUID REFERENCES users (id),
+    task_id    UUID REFERENCES tasks (id) ON DELETE CASCADE
 );
 
 CREATE TABLE refresh_tokens
