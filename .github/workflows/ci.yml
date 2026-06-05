@@ -41,3 +41,7 @@ jobs:
           DB_URL: jdbc:postgresql://localhost:5432/taskflow_test
           DB_USER: taskflow
           DB_PASSWORD: taskflow123
+
+          JWT_SECRET: AlNtyrby8JuM7CuyUb7tvNRboY2K2A0uEaA63ETtc5p
+          JWT_TOKEN_EXPIRATION: 600000
+          JWT_REFRESH_TOKEN_EXPIRATION: 604800000
