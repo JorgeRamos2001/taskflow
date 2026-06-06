@@ -11,4 +11,6 @@ import java.util.UUID;
 public interface RefreshTokenRepository extends JpaRepository<RefreshToken, UUID> {
     Optional<RefreshToken> findByToken(String token);
     boolean existsByTokenAndUser_Id(String token, UUID userId);
+    Integer countAllByUser_Id(UUID userId);
+    Optional<RefreshToken> findFirstByUser_IdOrderByCreatedAtAsc(UUID userId);
 }

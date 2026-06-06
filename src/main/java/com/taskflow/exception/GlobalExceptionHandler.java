@@ -1,6 +1,7 @@
 package com.taskflow.exception;
 
 import com.taskflow.exception.specific.ConflictException;
+import com.taskflow.exception.specific.RefreshTokenExpiredException;
 import com.taskflow.exception.specific.ResourceNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -45,6 +46,21 @@ public class GlobalExceptionHandler {
                         HttpStatus.CONFLICT.value(),
                         "CONFLICT",
                         ex.getMessage(),
+                        request.getDescription(false),
+                        LocalDateTime.now()
+                ));
+    }
+
+    @ExceptionHandler(RefreshTokenExpiredException.class)
+    public ResponseEntity<ExceptionResponse> handleRefreshTokenExpiredException(RefreshTokenExpiredException ex, WebRequest request) {
+        log.warn("Refresh token expired error occurred: {}", ex.getMessage());
+
+        return ResponseEntity
+                .status(HttpStatus.UNAUTHORIZED)
+                .body(new ExceptionResponse(
+                        HttpStatus.UNAUTHORIZED.value(),
+                        "REFRESH_TOKEN_EXPIRED",
+                        "Refresh token expired. Please log in again to obtain a new token.",
                         request.getDescription(false),
                         LocalDateTime.now()
                 ));
