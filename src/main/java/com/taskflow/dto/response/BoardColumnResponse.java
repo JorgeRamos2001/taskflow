@@ -9,6 +9,6 @@ public record BoardColumnResponse(
         String name,
         Integer position,
         Integer tasksCount,
-        List<TaskResponse> tasks
+        List<TaskSummaryResponse> tasks
 ) {
 }
