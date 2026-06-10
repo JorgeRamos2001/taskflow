@@ -4,6 +4,7 @@ import com.taskflow.dto.request.ChangeTaskBoardColumnRequest;
 import com.taskflow.dto.request.TaskRequest;
 import com.taskflow.dto.response.TaskResponse;
 import com.taskflow.service.TaskService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/boards")
 @RequiredArgsConstructor
+@Tag(name = "Task", description = "Endpoints for tasks")
 public class TaskController {
     private final TaskService taskService;
 

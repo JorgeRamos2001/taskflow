@@ -6,6 +6,7 @@ import com.taskflow.dto.request.RefreshTokenRequest;
 import com.taskflow.dto.request.UserRequest;
 import com.taskflow.dto.response.AuthResponse;
 import com.taskflow.service.AuthService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
+@Tag(name = "Auth", description = "Endpoints for authentication")
 public class AuthController {
     private final AuthService authService;
 

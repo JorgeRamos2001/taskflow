@@ -1,10 +1,10 @@
 package com.taskflow.controller;
 
-import com.taskflow.domain.entities.User;
 import com.taskflow.dto.request.ChangePasswordRequest;
 import com.taskflow.dto.request.UpdateUserRequest;
 import com.taskflow.dto.response.UserResponse;
 import com.taskflow.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
+@Tag(name = "User", description = "Endpoints for users")
 public class UserController {
     private final UserService userService;
 

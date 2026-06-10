@@ -4,6 +4,7 @@ import com.taskflow.dto.request.SubTaskRequest;
 import com.taskflow.dto.request.UpdateSubTaskRequest;
 import com.taskflow.dto.response.SubTaskResponse;
 import com.taskflow.service.SubTaskService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/tasks")
 @RequiredArgsConstructor
+@Tag(name = "Sub Task", description = "Endpoints for sub tasks")
 public class SubTaskController {
     private final SubTaskService subTaskService;
 

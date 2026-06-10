@@ -4,6 +4,7 @@ import com.taskflow.dto.request.CommentRequest;
 import com.taskflow.dto.request.UpdateCommentRequest;
 import com.taskflow.dto.response.CommentResponse;
 import com.taskflow.service.CommentService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/tasks")
 @RequiredArgsConstructor
+@Tag(name = "Comment", description = "Endpoints for comments")
 public class CommentController {
     private final CommentService commentService;
 

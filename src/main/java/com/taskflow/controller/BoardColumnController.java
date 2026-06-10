@@ -4,6 +4,7 @@ import com.taskflow.dto.request.BoardColumnRequest;
 import com.taskflow.dto.request.ChangeColumnPositionRequest;
 import com.taskflow.dto.response.BoardColumnResponse;
 import com.taskflow.service.BoardColumnService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/boards")
 @RequiredArgsConstructor
+@Tag(name = "Board Column", description = "Endpoints for board columns")
 public class BoardColumnController {
     private final BoardColumnService boardColumnService;
 
