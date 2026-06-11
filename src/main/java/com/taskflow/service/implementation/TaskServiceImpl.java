@@ -10,10 +10,7 @@ import com.taskflow.dto.response.TaskResponse;
 import com.taskflow.dto.response.UserResponse;
 import com.taskflow.exception.specific.ConflictException;
 import com.taskflow.exception.specific.ResourceNotFoundException;
-import com.taskflow.repository.BoardColumnRepository;
-import com.taskflow.repository.BoardRepository;
-import com.taskflow.repository.TaskRepository;
-import com.taskflow.repository.UserRepository;
+import com.taskflow.repository.*;
 import com.taskflow.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +28,7 @@ public class TaskServiceImpl implements TaskService {
     private final BoardRepository boardRepository;
     private final BoardColumnRepository boardColumnRepository;
     private final UserRepository userRepository;
+    private final TaskAssigneeRepository taskAssigneeRepository;
 
     @Override
     @Transactional
@@ -86,6 +84,10 @@ public class TaskServiceImpl implements TaskService {
         validateBoardColumn(user, board, boardColumn);
 
         Task task = taskRepository.findById(taskId).orElseThrow(() -> new ResourceNotFoundException("Task with id " + taskId + " not found"));
+
+        if (!task.getBoardColumn().getId().equals(boardColumn.getId())) {
+            throw new AccessDeniedException("You are not authorized to access this task");
+        }
 
         task.setTitle(request.title());
         task.setDescription(request.description());
@@ -145,8 +147,9 @@ public class TaskServiceImpl implements TaskService {
                 .user(assignee)
                 .task(task)
                 .build();
-        task.getTaskAssignees().add(taskAssignee);
-        taskRepository.save(task);
+        //task.getTaskAssignees().add(taskAssignee);
+        //taskRepository.save(task);
+        taskAssigneeRepository.save(taskAssignee);
         log.info("Task assigned successfully for board: {}", board.getId());
     }
 

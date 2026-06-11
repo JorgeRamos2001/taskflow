@@ -133,6 +133,9 @@ public class BoardServiceImpl implements BoardService {
             throw new AccessDeniedException("You are not authorized to access this board");
         }
 
+        List<BoardMember> boardMembers = boardMemberRepository.findByBoardId(board.getId());
+        boardMemberRepository.deleteAll(boardMembers);
+
         boardRepository.delete(board);
         log.info("Board deleted successfully for user: {}", user.getEmail());
     }
